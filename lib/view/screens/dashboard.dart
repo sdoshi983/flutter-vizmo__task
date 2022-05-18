@@ -17,6 +17,8 @@ class _DashboardState extends State<Dashboard> {
   ];
   @override
   Widget build(BuildContext context) {
+    Constants.height = MediaQuery.of(context).size.height;
+    Constants.width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: tabs[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
