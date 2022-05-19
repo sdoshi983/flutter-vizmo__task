@@ -17,6 +17,14 @@ class _ProfileState extends State<Profile> {
         title: Text('Profile'),
         backgroundColor: Constants.kThemeColor,
       ),
+      body: Center(
+        child: Text(
+          'Profile Module ...',
+          style: TextStyle(
+            fontSize: Constants.width * 0.05
+          ),
+        ),
+      ),
     );
   }
 }

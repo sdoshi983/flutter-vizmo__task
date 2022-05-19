@@ -1,3 +1,5 @@
+// this fie contains all the static constants which can be used all over the app
+
 import 'dart:ui';
 
 class Constants{

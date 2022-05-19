@@ -1,3 +1,5 @@
+// contains all the routing part
+
 import 'package:flutter/material.dart';
 import 'package:vizmo_task/view/screens/employees/employee_detail.dart';
 

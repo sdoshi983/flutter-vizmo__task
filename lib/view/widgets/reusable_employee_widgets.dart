@@ -1,3 +1,5 @@
+// this file contains all the reusable widgets
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vizmo_task/data/constants.dart';
@@ -31,7 +33,7 @@ class ReusableText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           keyText! + ':',

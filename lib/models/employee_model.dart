@@ -1,3 +1,5 @@
+// this file contains all the api call functions
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -5,7 +7,7 @@ import 'package:vizmo_task/helpers/urls.dart';
 
 class EmployeeModel{
   static Future<dynamic> getEmployeesList(int pageKey, int limit) async {
-    try{
+    try{    // exception handling
       var response = await http.get(Uri.parse(getEmployeesListApi + '?page=$pageKey&limit=$limit'));
       if(response.statusCode == 200){
         var data = jsonDecode(response.body);
@@ -20,7 +22,7 @@ class EmployeeModel{
   }
 
   static Future<dynamic> getEmployeeCheckIns(String employeeId) async {
-    try{
+    try{  // exception handling
       var response = await http.get(Uri.parse(getEmployeeCheckInsApi + employeeId + '/checkin'));
       if(response.statusCode == 200){
         var data = jsonDecode(response.body);

@@ -12,14 +12,14 @@ class EmployeesList extends StatefulWidget {
 }
 
 class _EmployeesListState extends State<EmployeesList> {
-  static const _limit = 10;
-  int page = 1;
-  final PagingController _pagingController =
-  PagingController(firstPageKey: 1);
+  static const _limit = 10;   // indicates the number of records that will be fetched in an api call
+  int page = 1;   // value of the page of pagination
+
+  final PagingController _pagingController = PagingController(firstPageKey: 1);   // controller for pagination
 
   @override
   void initState() {
-    _pagingController.addPageRequestListener((pageKey) {
+    _pagingController.addPageRequestListener((pageKey) {   // adding listener which will be called every time new items are needed.
       _fetchPage(pageKey);
     });
     super.initState();
@@ -68,7 +68,6 @@ class _EmployeesListState extends State<EmployeesList> {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: Constants.width * 0.04, vertical: Constants.height * 0.02),
                         decoration: BoxDecoration(
-                          //color: themeColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey.withOpacity(0.2))
                         ),
@@ -78,6 +77,7 @@ class _EmployeesListState extends State<EmployeesList> {
                             SizedBox(width: Constants.width * 0.05,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              // NOTE: Reusable widgets are used to decrease the lines of code and thereby making it much clearer.
                               children: [
                                 ReusableEmployeeDetailText(icon: Icons.person, text: employeeDetails['name'],),
                                 SizedBox(height: Constants.height * 0.01,),

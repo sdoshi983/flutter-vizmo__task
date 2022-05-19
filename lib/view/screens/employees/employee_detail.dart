@@ -78,6 +78,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
                         border: Border.all(color: Colors.grey)
                     ),
                     child: Column(
+                      // NOTE: Reusable widgets are used to decrease the lines of code and thereby making it much clearer.
                       children: [
                         ReusableText(keyText: 'Location', value: checkIns[index]['location'],),
                         SizedBox(height: Constants.height * 0.02,),
