@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vizmo_task/route_generator.dart';
 import 'package:vizmo_task/view/screens/dashboard.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

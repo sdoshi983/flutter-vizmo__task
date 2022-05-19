@@ -18,4 +18,19 @@ class EmployeeModel{
       return [];
     }
   }
+
+  static Future<dynamic> getEmployeeCheckIns(String employeeId) async {
+    try{
+      var response = await http.get(Uri.parse(getEmployeeCheckInsApi + employeeId + '/checkin'));
+      if(response.statusCode == 200){
+        var data = jsonDecode(response.body);
+        return data;
+      }else{
+        return [];
+      }
+    }catch(e){
+      print("EmployeeModel model: getEmployeeCheckIns " + e.toString());
+      return [];
+    }
+  }
 }

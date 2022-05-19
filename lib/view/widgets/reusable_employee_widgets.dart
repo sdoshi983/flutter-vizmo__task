@@ -23,3 +23,34 @@ class ReusableEmployeeDetailText extends StatelessWidget {
     );
   }
 }
+
+class ReusableText extends StatelessWidget {
+  ReusableText({this.keyText, this.value});
+  String? keyText, value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          keyText! + ':',
+          style: TextStyle(
+            fontSize: Constants.width * 0.035,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        SizedBox(width: Constants.width * 0.03,),
+        Expanded(
+          child: Text(
+            value!,
+            style: TextStyle(
+                fontSize: Constants.width * 0.035
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
