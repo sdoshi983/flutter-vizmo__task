@@ -7,7 +7,7 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/EmployeeDetail':
-        return MaterialPageRoute(builder: (_) => EmployeeDetail());
+        return MaterialPageRoute(builder: (_) => EmployeeDetail(employeeDetails: (args as EmployeeDetail).employeeDetails,));
       default:
       // If there is no such named route in the switch statement, e.g. /third
         return MaterialPageRoute(
