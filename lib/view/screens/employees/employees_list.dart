@@ -87,7 +87,7 @@ class _EmployeesListState extends State<EmployeesList> {
                         child: Row(
                           children: [
                             Image.network(employeeDetails['avatar'], width: Constants.width * 0.12, height: Constants.height * 0.08, fit: BoxFit.fill,),
-                            SizedBox(width: Constants.width * 0.05,),
+                            SizedBox(width: Constants.width * 0.07,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               // NOTE: Reusable widgets are used to decrease the lines of code and thereby making it much clearer.

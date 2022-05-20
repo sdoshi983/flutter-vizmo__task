@@ -13,7 +13,7 @@ class ReusableEmployeeDetailText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon),
+        Icon(icon, size: Constants.width * 0.045,),
         SizedBox(width: Constants.width * 0.03,),
         Text(
           text!,
