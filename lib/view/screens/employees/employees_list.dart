@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'package:vizmo_task/data/constants.dart';
 import 'package:vizmo_task/models/employee_model.dart';
+import 'package:vizmo_task/providers/main_provider.dart';
 import 'package:vizmo_task/view/screens/employees/employee_detail.dart';
 import 'package:vizmo_task/view/widgets/reusable_employee_widgets.dart';
+import 'package:vizmo_task/view/widgets/sort_employee_bottom_sheet.dart';
 
 class EmployeesList extends StatefulWidget {
   @override
@@ -14,7 +17,7 @@ class EmployeesList extends StatefulWidget {
 class _EmployeesListState extends State<EmployeesList> {
   static const _limit = 10;   // indicates the number of records that will be fetched in an api call
   int page = 1;   // value of the page of pagination
-
+  String sortBy = 'none';
   final PagingController _pagingController = PagingController(firstPageKey: 1);   // controller for pagination
 
   @override
@@ -26,8 +29,12 @@ class _EmployeesListState extends State<EmployeesList> {
   }
 
   Future<void> _fetchPage(int pageKey) async {
+    var hash = Provider.of<MainProvider>(context, listen: false).hash;
+    if(hash.containsKey('sortColumn'))
+      sortBy = hash['sortColumn'];
+
     try {
-      final newItems = await EmployeeModel.getEmployeesList(page, _limit);
+      final newItems = await EmployeeModel.getEmployeesList(page, _limit, sortBy);
       final isLastPage = newItems.length < _limit;
       if (isLastPage) {
         _pagingController.appendLastPage(newItems);
@@ -47,6 +54,12 @@ class _EmployeesListState extends State<EmployeesList> {
         elevation: 4,
         title: Text('Employees'),
         backgroundColor: Constants.kThemeColor,
+        actions: [
+          GestureDetector(
+            onTap: onFilterActionClicked,
+            child: Icon(Icons.sort)),
+          SizedBox(width: Constants.width * 0.03,)
+        ],
       ),
       body: Container(
         color: Colors.grey.withOpacity(0.1),
@@ -99,5 +112,19 @@ class _EmployeesListState extends State<EmployeesList> {
         ),
       ),
     );
+  }
+
+  void onFilterActionClicked() async {
+    await showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        builder: (BuildContext bc) {
+          return SortEmployeeBottomSheet();
+        }
+    );
+    _pagingController.refresh();
   }
 }
